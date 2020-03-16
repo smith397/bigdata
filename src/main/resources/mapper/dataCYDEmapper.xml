@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zj.data.mapper.dataCYDEmapper">
+<resultMap id="realdata" type="com.zj.data.domin.RealData">
+    <id column="id" jdbcType="INT" property="id" />
+    <result column="update_date " jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="file_name" jdbcType="VARCHAR" property="fileName" />
+    <result column="file_path" jdbcType="VARCHAR" property="filePath" />
+</resultMap>
+
+    <insert id="insertintodatabaseRealData" parameterType="com.zj.data.domin.RealData">
+       insert into realdata (id,Status,description,access_jam,date) values (#{id},#{Status},#{description},#{access_jam},#{date})
+    </insert>
+    <select id="SelectByRealData" resultMap="realdata" >
+
+    </select>
+
+
+
+
+</mapper>

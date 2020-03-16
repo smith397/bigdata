@@ -1,0 +1,38 @@
+server:
+  port: 8085
+
+spring:
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: LEGACYHTML5
+    encoding: UTF-8
+    content-type: text/html
+  freemarker:
+    check-template-location: false
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/bigdata?characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+      username: root
+      password: 123
+      initial-size: 5
+      min-idle: 1
+      max-active: 50
+      max-wait: 60000
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/bigdata?characterEncoding=utf-8&serverTimezone=UTC&useSSL=false
+    username: root
+    password: 123
+
+#logging:
+#  level:
+requesturl:
+  road_name: "2232"
+  city: "12345"
+  ak: "23323"
+
+mybatis:
+  mapper-locations: classpath:mapper/*mapper.xml
+  type-aliases-package: com.zj.data.domin.entity
