@@ -2,18 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zj.data.mapper.dataCYDEmapper">
 <resultMap id="realdata" type="com.zj.data.domin.RealData">
-    <id column="id" jdbcType="INT" property="id" />
-    <result column="update_date " jdbcType="TIMESTAMP" property="updateDate" />
-    <result column="file_name" jdbcType="VARCHAR" property="fileName" />
-    <result column="file_path" jdbcType="VARCHAR" property="filePath" />
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="Status " jdbcType="INTEGER" property="Status" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="access_jam" jdbcType="VARCHAR" property="access_jam" />
+    <result column="date" jdbcType="TIMESTAMP" property="date" javaType="java.sql.Timestamp" />
+    <result column="week" jdbcType="VARCHAR" property="week" />
 </resultMap>
 
     <insert id="insertintodatabaseRealData" parameterType="com.zj.data.domin.RealData">
-       insert into realdata (id,Status,description,access_jam,date) values (#{id},#{Status},#{description},#{access_jam},#{date})
+       insert into realdata (id,Status,description,access_jam,date,week) values (#{id},#{Status},#{description},#{access_jam},#{date},#{week})
     </insert>
-    <select id="SelectByRealData" resultMap="realdata" >
 
+    <select id="SelectByRealData" resultMap="realdata" >
+     select * from realdata
     </select>
+
+    <select id="SelectByRealDataTotalCount" resultMap="realdata" >
+     select count (*) from realdata
+    </select>
+
+
 
 
 

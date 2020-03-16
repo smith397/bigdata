@@ -16,4 +16,6 @@ public interface dataCYDEmapper {
 
    public FuntureData SelectByFuntureData();
 
+   public Integer SelectByRealDataTotalCount();
+
 }
