@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>获取数据</title>
+    <link href="../static/bootstap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="../static/bootstap/js/jquery-3.4.1.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="../static/bootstap/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+
+
+</body>
+</html>
+<script type="application/javascript">
+
+    $(function () {
+        $.ajax(
+            {
+                url:"http://api.map.baidu.com/traffic/v1/road?road_name=西二环&city=北京市&ak=lWzaIyq65zwIZtpVRanHbCuT3oHb8YTk",//GET请求
+                type:"get",
+                dataType: "jsonp",
+                async:false,
+                jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+                success:function (data) {
+                    var object = new Object();
+                    var parseJSON = JSON.parse(JSON.stringify(data));
+                    object["status"]=parseJSON["status"];
+                    object["description"] = parseJSON["description"];
+                    object["access_jam"] = parseJSON.road_traffic[0].congestion_sections[0].status;
+                    $.ajax(
+                        {
+                            url:"/interface",
+                            type:"post",
+                            data:JSON.stringify(object),
+                            contentType: 'application/json',
+                            success:function (data) {
+                                console.log(data);
+                            }
+                        }
+                    )
+                }
+            }
+        )
+    })
+</script>

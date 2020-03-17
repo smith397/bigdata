@@ -22,6 +22,29 @@
      select count (*) from realdata
     </select>
 
+    <insert id="insertintodatabaseFuntureData" parameterType="java.util.List">
+        insert into funturedata
+        (
+        id,
+        week,
+        Status,
+        date,
+        description
+        )
+        values
+        <foreach collection="list" item="item" index= "index" separator =",">
+            (
+            #{item.id},
+            #{item.week},
+            #{item.Status},
+            #{item.date},
+            #{item.description}
+            )
+        </foreach>
+    </insert>
+
+
+
 
 
 

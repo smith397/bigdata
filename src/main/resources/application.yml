@@ -65,6 +65,7 @@ spring:
 mybatis:
   mapper-locations: classpath:mapper/*mapper.xml
   type-aliases-package: com.zj.data.domin.entity
-
+file:
+  path: "C:\\Users\\AW\\Desktop\\北京东城区西外环39.9w,116.35e.xlsx"
 
 
