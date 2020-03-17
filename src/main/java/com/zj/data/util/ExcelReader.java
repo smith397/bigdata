@@ -1,6 +1,7 @@
 package com.zj.data.util;
 
 import com.zj.data.domin.FuntureData;
+import com.zj.data.service.serviceimp.setDescription;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -130,6 +131,7 @@ public class ExcelReader {
                     String s = convertCellValueToString(cell);
                     FuntureData funtureData = new FuntureData();
                     funtureData.setStatus(s);
+                    setDescription.setdescription(funtureData,s);
                     funtureData.setWeek(convertCellValueToString(row.getCell(0)));
                     funtureData.setDate(time.get(cellNum1-1));
                     cellNum1++;

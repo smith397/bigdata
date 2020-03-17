@@ -14,4 +14,6 @@ public class FuntureData {
     private String week;
     private String Status;
     private String date;
+    private String description;
+    private String SampleName;
 }

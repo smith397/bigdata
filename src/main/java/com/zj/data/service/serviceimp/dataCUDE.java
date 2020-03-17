@@ -19,6 +19,9 @@ public class dataCUDE {
     @Autowired
     dataCYDEmapper mapper;
 
+    @Autowired
+    private Environment env;
+
     public void insertintodataReal(RealData realData)
     {
         realData.setDate(new Date());
@@ -26,11 +29,15 @@ public class dataCUDE {
         mapper.insertintodatabaseRealData(realData);
     }
 
-    public void insertintodatabaseFuntureData(FuntureData funtureData)
+    public void insertintodatabaseFuntureData()
     {
-        Environment environment = SpringContextUtil.getBean(Environment.class);
-        String property = environment.getProperty("file.path");
+        String property = env.getProperty("file.path1");
         List<FuntureData> funtureDataList = ExcelReader.readExcel(property);
+        String substring = property.substring(property.lastIndexOf("\\") + 1);
+        String filename = substring.substring(0,substring.lastIndexOf("."));
+        for (FuntureData funtureData : funtureDataList) {
+            funtureData.setSampleName(filename);
+        }
         mapper.insertintodatabaseFuntureData(funtureDataList);
     }
 

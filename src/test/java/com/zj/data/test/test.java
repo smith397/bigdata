@@ -19,11 +19,11 @@ public class test {
     @Autowired
     dataCUDE data;
 
-//    @Test
-//    public void test(){
-//        System.out.println(data);
-//        data.insertintodataReal(new RealData (1, 1, "1", "1", new Date()));
-//    }
+    @Test
+    public void test(){
+
+        data.insertintodatabaseFuntureData();
+    }
 
 
 

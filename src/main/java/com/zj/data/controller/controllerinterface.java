@@ -35,6 +35,13 @@ public class controllerinterface {
         return modelAndView;
     }
 
+    @ResponseBody
+    @RequestMapping("/funturedata")
+    public String test1 ()
+    {
+        dataCURD.insertintodatabaseFuntureData();
+        return "1";
+    }
 
 
 

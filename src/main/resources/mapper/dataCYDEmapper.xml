@@ -29,7 +29,8 @@
         week,
         Status,
         date,
-        description
+        description,
+        SampleName
         )
         values
         <foreach collection="list" item="item" index= "index" separator =",">
@@ -38,7 +39,8 @@
             #{item.week},
             #{item.Status},
             #{item.date},
-            #{item.description}
+            #{item.description},
+            #{item.SampleName}
             )
         </foreach>
     </insert>

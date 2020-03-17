@@ -1,6 +1,5 @@
 server:
   port: 8084
-
 spring:
   thymeleaf:
     cache: false
@@ -66,6 +65,7 @@ mybatis:
   mapper-locations: classpath:mapper/*mapper.xml
   type-aliases-package: com.zj.data.domin.entity
 file:
-  path: "C:\\Users\\AW\\Desktop\\北京东城区西外环39.9w,116.35e.xlsx"
+  path1: "C:\\Users\\AW\\Desktop\\监测点2.xlsx"
+  path2:
 
 
