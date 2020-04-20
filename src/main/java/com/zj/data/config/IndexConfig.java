@@ -11,7 +11,7 @@ public class IndexConfig {
     @EventListener({ApplicationReadyEvent.class})
     void applicationReadyEvent () {
         System.out.println("应用已经准备就绪 ... 启动浏览器");
-        String url = "http://localhost:8084/controller";
+        String url = "http://localhost:8085/controller";
         Runtime runtime = Runtime.getRuntime();
         try {
             runtime.exec("rundll32 url.dll,FileProtocolHandler " + url);

@@ -1,5 +1,5 @@
 server:
-  port: 8084
+  port: 8085
 spring:
   thymeleaf:
     cache: false
@@ -65,7 +65,13 @@ mybatis:
   mapper-locations: classpath:mapper/*mapper.xml
   type-aliases-package: com.zj.data.domin.entity
 file:
-  path1: "C:\\Users\\AW\\Desktop\\监测点2.xlsx"
+  path1: "C:\\Users\\AW\\Desktop\\上海市成都北路.xlsx"
   path2:
-
+logging:
+  level:
+    root: info
+  pattern:
+    console: "%d{yyyy/MM/dd-HH:mm:ss} [%thread] %-5level %logger- %msg%n"
+    file: "%d{yyyy/MM/dd-HH:mm:ss}  [%thread] %-5level %logger- %msg%n"
+  path: "D:/springboot日志"
 

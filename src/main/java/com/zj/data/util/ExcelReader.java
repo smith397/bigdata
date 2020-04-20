@@ -66,6 +66,7 @@ public class ExcelReader {
                 return null;
             }
             // 获取Excel工作簿
+            log.error(excelFile.toString());
             inputStream = new FileInputStream(excelFile);
             workbook = getWorkbook(inputStream, fileType);
             funtureDataList = parseExcel(workbook);
@@ -96,6 +97,7 @@ public class ExcelReader {
     private static List<FuntureData> parseExcel(Workbook workbook) {
 //        List<ExcelDataVO> resultDataList = new ArrayList<>();
         // 解析sheet
+        System.out.println(workbook);
         List<FuntureData> funtureDataList = null;
         for (int sheetNum = 0; sheetNum < workbook.getNumberOfSheets(); sheetNum++) {
             Sheet sheet = workbook.getSheetAt(sheetNum);
@@ -111,6 +113,7 @@ public class ExcelReader {
             while (true) {
                 Cell cell = firstRow.getCell(cellNum++);
                 String s = convertCellValueToString(cell);
+                log.error(s);
                 if (s==null) break;
                 time.add(s);
             }
@@ -129,6 +132,7 @@ public class ExcelReader {
                     }
                     Cell cell = row.getCell(cellNum1);
                     String s = convertCellValueToString(cell);
+                    log.error(s);
                     FuntureData funtureData = new FuntureData();
                     funtureData.setStatus(s);
                     setDescription.setdescription(funtureData,s);

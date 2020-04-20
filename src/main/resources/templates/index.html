@@ -21,28 +21,30 @@
 </body>
 </html>
 <script type="application/javascript">
-
-    $(function () {
+    function getData(street,city) {
         $.ajax(
             {
-                url:"http://api.map.baidu.com/traffic/v1/road?road_name=西二环&city=北京市&ak=lWzaIyq65zwIZtpVRanHbCuT3oHb8YTk",//GET请求
-                type:"get",
+                url: "http://api.map.baidu.com/traffic/v1/road?road_name="+street+"&city="+city+"&ak=lWzaIyq65zwIZtpVRanHbCuT3oHb8YTk",//GET请求
+                type: "get",
                 dataType: "jsonp",
-                async:false,
+                async: false,
                 jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
-                success:function (data) {
+                success: function (data) {
+                    console.log(data);
                     var object = new Object();
                     var parseJSON = JSON.parse(JSON.stringify(data));
-                    object["status"]=parseJSON["status"];
+                    object["status"] = parseJSON["status"];
                     object["description"] = parseJSON["description"];
-                    object["access_jam"] = parseJSON.road_traffic[0].congestion_sections[0].status;
+                    object["access_jam"] = parseJSON.evaluation["status"];
+                    object["street"]=street;
+                    object["city"]=city;
                     $.ajax(
                         {
-                            url:"/interface",
-                            type:"post",
-                            data:JSON.stringify(object),
+                            url: "/interface",
+                            type: "post",
+                            data: JSON.stringify(object),
                             contentType: 'application/json',
-                            success:function (data) {
+                            success: function (data) {
                                 console.log(data);
                             }
                         }
@@ -50,5 +52,23 @@
                 }
             }
         )
-    })
+    }
+    $(function () {
+        // var street = new Array();
+        // street[0]="西二环";
+        // // street[1]="永安里";
+        // street[1]="成都北路";
+        // var city = new Array();
+        // city[0]="北京";
+        // // city[1]="北京";
+        // city[1]="上海";
+        //每15分钟执行一次
+        setInterval(function (){
+            getData("西二环","北京");
+            getData("成都北路","上海");
+            },1000*15*60);
+    });
+
+
+
 </script>

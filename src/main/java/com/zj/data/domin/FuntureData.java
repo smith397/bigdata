@@ -16,4 +16,5 @@ public class FuntureData {
     private String date;
     private String description;
     private String SampleName;
+    private String position;
 }

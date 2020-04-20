@@ -21,4 +21,52 @@ public class DateTools {
         return weekDays[w];
     }
 
+
+
+
+
+    /**获取当前时间的整点小时时间
+     * @param date
+     * @return
+     */
+    public static String getCurrHourTime(Date date){
+        Calendar ca = Calendar.getInstance();
+        date = ca.getTime();
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+        return sdf.format(date);
+    }
+
+    /**
+     * 获取时间字符串的整数部分，然后并加1；
+     * @return
+     */
+    public static String dateToTime(String date)
+    {
+        Integer result = null;
+        String first = String.valueOf(date.charAt(0));
+        String sencond = String.valueOf(date.charAt(1));
+        if (first.equals("0"))
+        {
+            result=Integer.parseInt(sencond)+1;
+        }
+        else if(date.substring(0,2).equals("23"))
+        {
+            result=0;
+        }
+        else if (!first.equals("0"))
+        {
+            result=Integer.parseInt(date.substring(0,2))+1;
+        }else {
+            return "error";
+        }
+
+        return result.toString()+"时";
+
+    }
+
+    public static void main (String[] args) {
+        String s = DateTools.dateToTime("");
+        System.out.println(s);
+    }
+
 }

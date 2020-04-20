@@ -3,23 +3,36 @@
 <mapper namespace="com.zj.data.mapper.dataCYDEmapper">
 <resultMap id="realdata" type="com.zj.data.domin.RealData">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="Status " jdbcType="INTEGER" property="Status" />
+    <result column="Status " jdbcType="VARCHAR" property="Status" />
     <result column="description" jdbcType="VARCHAR" property="description" />
     <result column="access_jam" jdbcType="VARCHAR" property="access_jam" />
-    <result column="date" jdbcType="TIMESTAMP" property="date" javaType="java.sql.Timestamp" />
+    <result column="date" jdbcType="VARCHAR" property="date" javaType="java.sql.Timestamp" />
     <result column="week" jdbcType="VARCHAR" property="week" />
+    <result column="street" jdbcType="VARCHAR" property="street" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
 </resultMap>
 
     <insert id="insertintodatabaseRealData" parameterType="com.zj.data.domin.RealData">
-       insert into realdata (id,Status,description,access_jam,date,week) values (#{id},#{Status},#{description},#{access_jam},#{date},#{week})
+       insert into realdata (id,Status,description,access_jam,date,week,street,city) values (#{id},#{Status},#{description},#{access_jam},#{date},#{week},#{street},#{city})
     </insert>
 
-    <select id="SelectByRealData" resultMap="realdata" >
-     select * from realdata
+    <select id="SelectByRealData" resultType="com.zj.data.domin.RealData">
+     select * from realdata where  street = #{StreetName}
     </select>
 
-    <select id="SelectByRealDataTotalCount" resultMap="realdata" >
+    <select id="SelectByRealDataTotalCount"  resultType="int">
      select count (*) from realdata
+    </select>
+    <select id="SelectByFuntureData" resultType="com.zj.data.domin.FuntureData" parameterType="String">
+     select * from funturedata where SampleName = #{Sample}
+    </select>
+
+    <select id="SelectByFuntureDataTotalCount"  resultType="int">
+     select count (*) from funturedata
+    </select>
+
+    <select id="SelectByData" resultType="com.zj.data.domin.RealData">
+     select * from realdata where week = #{week} and street = #{StreetName}
     </select>
 
     <insert id="insertintodatabaseFuntureData" parameterType="java.util.List">
@@ -30,7 +43,8 @@
         Status,
         date,
         description,
-        SampleName
+        SampleName,
+        position
         )
         values
         <foreach collection="list" item="item" index= "index" separator =",">
@@ -40,9 +54,14 @@
             #{item.Status},
             #{item.date},
             #{item.description},
-            #{item.SampleName}
+            #{item.SampleName},
+            #{item.position}
             )
         </foreach>
+
+
+
+
     </insert>
 
 
